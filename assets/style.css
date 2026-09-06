@@ -1,5 +1,5 @@
 /* ============================================================
-   seuring.de – Variante B „Profil"
+   seuring.de – Variante B „Profil“
 
    Zweispaltig: links die stehende Visitenkarte, rechts der Inhalt.
 
@@ -117,7 +117,7 @@ body {
    kleiner UND gesperrt UND kupfern, damit man es als Kategorie liest
    und nicht als Zeile des Profils.                                */
 
-/* „Berufliches Profil" – ordnet ein, ohne mit dem Namen zu konkurrieren.
+/* „Berufliches Profil“ – ordnet ein, ohne mit dem Namen zu konkurrieren.
    Privates liegt auf seuring.net (siehe Fuß der Seite).             */
 .kicker {
   margin: 0 0 .5rem;
