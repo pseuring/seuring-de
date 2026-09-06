@@ -26,6 +26,12 @@
 
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
            "Helvetica Neue", Arial, sans-serif;
+
+  /* Eine einzige kleine Schriftgröße für alles Sekundäre:
+     Rolle, Organisation/Ort und Profil-Links. Vorher standen dort
+     .95rem und .92rem nebeneinander – ein Unterschied, den man nicht
+     sieht, aber als Unruhe merkt.                                  */
+  --ui: .95rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -100,8 +106,19 @@ body {
   margin: 0 0 1.6rem;
 }
 
-/* Kennzeichnung „Berufliche Seite" – klein, gesperrt, zurückhaltend.
-   Sie soll einordnen, nicht mit dem Namen konkurrieren.            */
+/* Drei Ebenen in der linken Spalte – mehr nicht:
+     1. Name           groß, dunkel        → wer
+     2. Rolle          .95rem, dunkel      → was
+     3. alles Übrige   .95rem, grau        → wo, Label, Links
+   Größe sagt Wichtigkeit, Farbe sagt primär/sekundär. Deshalb gibt
+   es genau EINE kleine Schriftgröße (--ui: .95rem) für Rolle, Meta
+   und Links – frühere .92/.95-Mischung war ein unsichtbarer, aber
+   spürbarer Bruch. Das Label oben ist die einzige Ausnahme: Es ist
+   kleiner UND gesperrt UND kupfern, damit man es als Kategorie liest
+   und nicht als Zeile des Profils.                                */
+
+/* „Berufliches Profil" – ordnet ein, ohne mit dem Namen zu konkurrieren.
+   Privates liegt auf seuring.net (siehe Fuß der Seite).             */
 .kicker {
   margin: 0 0 .5rem;
   font-size: .7rem;
@@ -119,21 +136,18 @@ body {
   margin: 0 0 .8rem;
 }
 
-.identity .role {
+.identity .role,
+.identity .meta {
   margin: 0;
-  font-size: .95rem;
+  font-size: var(--ui);
   line-height: 1.45;
 }
 
-.identity .org,
-.identity .place {
-  margin: 0;
-  font-size: .95rem;
-  line-height: 1.45;
-  color: var(--fg-muted);
-}
-
-.identity .place { margin-top: .55rem; }
+/* Organisation und Ort: eine Zeile, eine Farbe, kein Extra-Abstand.
+   Vorher standen sie als zwei gleich aussehende Absätze mit einer
+   Lücke dazwischen – die Lücke suggerierte eine Gliederung, die es
+   inhaltlich nicht gibt.                                           */
+.identity .meta { color: var(--fg-muted); }
 
 /* ---------- Profil-Links ----------
    Bewusst normale Links, kein LinkedIn-Badge: Ein Badge lädt ein
@@ -148,7 +162,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
-  font-size: .92rem;
+  font-size: var(--ui);
 }
 
 .links a {
