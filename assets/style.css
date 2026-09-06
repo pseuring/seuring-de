@@ -1,0 +1,374 @@
+/* ============================================================
+   seuring.de – Stylesheet
+   Designrichtung B: Tiefblau auf warmem Papierweiß, Kupfer als Akzent.
+
+   Bewusst ohne externe Schriften, ohne Frameworks, ohne CDN.
+   Alles, was der Browser lädt, liegt auf dem eigenen Server –
+   deshalb kommt die Seite ohne Cookie-Banner aus.
+   ============================================================ */
+
+:root {
+  --fg:         #14303d;   /* tiefes, entsättigtes Blau statt Schwarz */
+  --fg-muted:   #776f64;   /* warmes Grau, kein Blaugrau */
+  --bg:         #fbfaf8;   /* Papierweiß, nicht Konzernweiß */
+  --bg-soft:    #f3efe9;
+  --border:     #e4ded5;
+  --border-hi:  #cfc6b9;
+  --accent:     #14303d;
+  --copper:     #a8551f;   /* zweiter Akzent, in Konzernpaletten unüblich */
+  --copper-hi:  #8a4720;
+  --radius:     10px;
+  --maxw:       46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg:         #ece7df;
+    --fg-muted:   #a09689;
+    --bg:         #14181b;
+    --bg-soft:    #1d2226;
+    --border:     #303740;
+    --border-hi:  #454e58;
+    --accent:     #a8c8d6;
+    --copper:     #d98c56;
+    --copper-hi:  #eaa876;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Kopfbereich ---------- */
+
+header.site {
+  padding: 5rem 0 3rem;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.portrait {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-soft);
+  flex: none;
+}
+
+.identity h1 {
+  margin: 0 0 .35rem;
+  font-size: 2.15rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.022em;
+}
+
+.identity .role {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 1rem;
+  letter-spacing: .005em;
+}
+
+.intro {
+  margin: 2.25rem 0 0;
+  font-size: 1.14rem;
+  line-height: 1.6;
+  max-width: 36rem;
+}
+
+/* ---------- Abschnitte ---------- */
+
+section { padding: 3.5rem 0 0; }
+
+h2 {
+  font-size: .82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--fg-muted);
+  margin: 0 0 1.5rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+a { color: var(--copper); text-underline-offset: 2px; }
+a:hover { color: var(--copper-hi); }
+
+/* ---------- Beitragskarten ---------- */
+
+.embed {
+  margin: 0 0 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+  transition: border-color .15s ease;
+}
+
+.embed:hover { border-color: var(--border-hi); }
+
+/* Vorschaubild. Liegt lokal – nicht bei YouTube.
+   Würde man das YouTube-Thumbnail verlinken, wäre die
+   Zwei-Klick-Lösung wirkungslos.                        */
+.embed-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-soft);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.embed-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+
+.embed-thumb:hover img { transform: scale(1.02); }
+
+.embed-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 48, 61, .18);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.embed-thumb:hover::after { opacity: 1; }
+
+.play-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: rgba(251, 250, 248, .93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.play-badge::after {
+  content: "";
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent var(--copper);
+  margin-left: 4px;
+}
+
+.embed-thumb:focus-visible { outline: 3px solid var(--copper); outline-offset: -3px; }
+
+/* Artikelkarte: kein Abspiel-Symbol, dafür ein dezenter Pfeil.
+   Signalisiert „führt weg von hier" statt „spielt hier ab".   */
+.is-article .embed-thumb { cursor: pointer; }
+
+.is-article .embed-thumb::before {
+  content: "↗";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(251, 250, 248, .93);
+  color: var(--copper);
+  font-size: 1rem;
+  line-height: 34px;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .is-article .embed-thumb::before { background: rgba(20, 24, 27, .9); }
+}
+
+.embed-body { padding: 1.25rem 1.4rem 1.4rem; }
+
+.embed-meta {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--fg-muted);
+  margin: 0 0 .4rem;
+}
+
+.embed-title {
+  margin: 0 0 .55rem;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+
+.embed-desc {
+  margin: 0;
+  font-size: .97rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.embed-actions {
+  margin: 1.1rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.privacy-note {
+  font-size: .8rem;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  margin: 0;
+  flex: 1 1 15rem;
+}
+
+/* ---------- Schaltflächen ---------- */
+
+.btn {
+  display: inline-block;
+  padding: .55rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover { background: transparent; color: var(--accent); }
+.btn:focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
+
+/* Rahmen für das eingesetzte Video */
+.embed-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.embed-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Profil-Links ---------- */
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.links a {
+  display: inline-block;
+  padding: .5rem 1.15rem;
+  border: 1px solid var(--border-hi);
+  border-radius: 999px;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: .93rem;
+}
+
+.links a:hover { border-color: var(--copper); color: var(--copper); }
+
+/* ---------- Fußbereich ---------- */
+
+footer.site {
+  margin-top: 4.5rem;
+  padding: 1.75rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--fg-muted);
+  font-size: .88rem;
+}
+
+footer.site nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+footer.site a { color: var(--fg-muted); }
+footer.site a:hover { color: var(--copper); }
+
+/* ---------- Rechtstexte ---------- */
+
+.legal { padding-top: 4rem; }
+.legal h1 { font-size: 1.9rem; font-weight: 600; margin: 0 0 1.5rem; letter-spacing: -.02em; }
+.legal h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -.005em;
+  color: var(--fg);
+  margin-top: 2.4rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.legal address {
+  font-style: normal;
+  padding: 1.1rem 1.35rem;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+}
+
+/* Offene Stellen – absichtlich auffällig, sollen nicht übersehen werden. */
+.todo {
+  background: #f7e3a8;
+  color: #5c4400;
+  padding: .1em .45em;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .todo { background: #6b5500; color: #ffeeb5; }
+  .play-badge { background: rgba(20, 24, 27, .9); }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 16px; }
+  header.site { padding: 3rem 0 2rem; }
+  .identity h1 { font-size: 1.7rem; }
+  .intro { font-size: 1.05rem; }
+  .portrait { width: 88px; height: 88px; }
+}
