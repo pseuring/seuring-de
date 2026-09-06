@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philipp Seuring</title>
+<meta name="description" content="Persönliche Seite von Philipp Seuring.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://seuring.de/">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="identity">
+      <!-- Portraitfoto: als website/assets/portrait.jpg ablegen.
+           Fehlt die Datei, bleibt der Kreis leer – die Seite funktioniert. -->
+      <img class="portrait" src="assets/portrait.jpg" alt="Porträtfoto von Philipp Seuring">
+      <div>
+        <h1>Philipp Seuring</h1>
+        <p class="role"><span class="todo">Rolle / Tätigkeit eintragen</span></p>
+      </div>
+    </div>
+
+    <p class="intro">
+      <span class="todo">Zwei bis vier Sätze über dich: Was machst du, was interessiert
+      dich, worum geht es auf dieser Seite. Das ist der Text, den Besucher zuerst lesen –
+      er sollte klingen wie du und nicht wie ein Lebenslauf.</span>
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================================================
+       BEITRÄGE
+
+       Jede Karte braucht drei Dinge:
+       1. data-id      – die YouTube-Video-ID (Teil hinter "v=" in der URL)
+       2. Vorschaubild – LOKAL unter assets/beitraege/ ablegen.
+                         Niemals das Bild von i.ytimg.com verlinken:
+                         das würde beim Seitenaufruf eine Anfrage an
+                         Google auslösen und die Zwei-Klick-Lösung
+                         wirkungslos machen.
+       3. Titel und Beschreibungstext
+
+       Vor dem Klick lädt die Seite nichts von YouTube.
+       ============================================================ -->
+  <section id="beitraege">
+    <h2>Beiträge</h2>
+
+    <article class="embed" data-id="HIER_VIDEO_ID_1"
+             data-title="Titel des ersten Beitrags">
+      <button type="button" class="embed-thumb" data-consent
+              aria-label="Erstes Video laden und abspielen">
+        <img src="assets/beitraege/beitrag-1.jpg" alt="">
+        <span class="play-badge" aria-hidden="true"></span>
+      </button>
+      <div class="embed-body">
+        <p class="embed-meta"><span class="todo">YouTube · Monat Jahr</span></p>
+        <h3 class="embed-title"><span class="todo">Titel des ersten Beitrags</span></h3>
+        <p class="embed-desc">
+          <span class="todo">Zwei bis drei Sätze: Worum geht es, für wen ist es
+          interessant, was nimmt man mit. Das ist der Text, der entscheidet, ob
+          jemand auf Abspielen klickt – er sollte den Inhalt beschreiben und nicht
+          nur den Titel wiederholen.</span>
+        </p>
+        <div class="embed-actions">
+          <button type="button" class="btn" data-consent>Video abspielen</button>
+          <p class="privacy-note">
+            Erst beim Klick werden Daten an YouTube übertragen.
+            <a href="datenschutz.html">Datenschutz</a>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="embed" data-id="HIER_VIDEO_ID_2"
+             data-title="Titel des zweiten Beitrags">
+      <button type="button" class="embed-thumb" data-consent
+              aria-label="Zweites Video laden und abspielen">
+        <img src="assets/beitraege/beitrag-2.jpg" alt="">
+        <span class="play-badge" aria-hidden="true"></span>
+      </button>
+      <div class="embed-body">
+        <p class="embed-meta"><span class="todo">YouTube · Monat Jahr</span></p>
+        <h3 class="embed-title"><span class="todo">Titel des zweiten Beitrags</span></h3>
+        <p class="embed-desc">
+          <span class="todo">Zwei bis drei Sätze zum Inhalt des zweiten Beitrags.</span>
+        </p>
+        <div class="embed-actions">
+          <button type="button" class="btn" data-consent>Video abspielen</button>
+          <p class="privacy-note">
+            Erst beim Klick werden Daten an YouTube übertragen.
+            <a href="datenschutz.html">Datenschutz</a>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="embed" data-id="HIER_VIDEO_ID_3"
+             data-title="Titel des dritten Beitrags">
+      <button type="button" class="embed-thumb" data-consent
+              aria-label="Drittes Video laden und abspielen">
+        <img src="assets/beitraege/beitrag-3.jpg" alt="">
+        <span class="play-badge" aria-hidden="true"></span>
+      </button>
+      <div class="embed-body">
+        <p class="embed-meta"><span class="todo">YouTube · Monat Jahr</span></p>
+        <h3 class="embed-title"><span class="todo">Titel des dritten Beitrags</span></h3>
+        <p class="embed-desc">
+          <span class="todo">Zwei bis drei Sätze zum Inhalt des dritten Beitrags.</span>
+        </p>
+        <div class="embed-actions">
+          <button type="button" class="btn" data-consent>Video abspielen</button>
+          <p class="privacy-note">
+            Erst beim Klick werden Daten an YouTube übertragen.
+            <a href="datenschutz.html">Datenschutz</a>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Artikelkarte: kein Einwilligungsklick nötig.
+         Ein Link überträgt beim Seitenaufruf nichts – erst wer
+         klickt, verlässt die Seite. Deshalb hat diese Karte
+         weder data-consent noch einen Datenschutzhinweis.
+
+         ⚠️ Noch nicht veröffentlicht (Stand 20.08.2026).
+         Diese Karte erst online stellen, wenn der Beitrag steht,
+         und dann die URL unten auf den direkten Artikellink
+         ändern – nicht auf die Startseite.                      -->
+    <article class="embed is-article">
+      <a class="embed-thumb" href="https://consultantcareerlounge.com/"
+         rel="noopener" target="_blank" aria-label="Beitrag auf Consultant Career Lounge lesen">
+        <img src="assets/beitraege/beitrag-ccl.jpg" alt="">
+      </a>
+      <div class="embed-body">
+        <p class="embed-meta"><span class="todo">Consultant Career Lounge · geplant</span></p>
+        <h3 class="embed-title"><span class="todo">Titel des Beitrags</span></h3>
+        <p class="embed-desc">
+          <span class="todo">Zwei bis drei Sätze zum Thema des Artikels: Worum geht es,
+          für wen ist er geschrieben, was nimmt man mit.</span>
+        </p>
+        <div class="embed-actions">
+          <a class="btn" href="https://consultantcareerlounge.com/"
+             rel="noopener" target="_blank">Beitrag lesen</a>
+          <p class="privacy-note">
+            Externer Link. Es werden erst Daten übertragen, wenn du ihn öffnest.
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================================================
+       PROFILE
+
+       Bewusst normale Links, kein LinkedIn-Badge: Ein Badge lädt
+       Skripte von LinkedIn nach und hätte dasselbe Einwilligungs-
+       problem wie ein Video. Begründung in README.md.
+       ============================================================ -->
+  <section id="profile">
+    <h2>Profile</h2>
+    <ul class="links">
+      <li>
+        <a href="https://www.linkedin.com/in/HIER_LINKEDIN_KURZNAME/"
+           rel="me noopener" target="_blank">LinkedIn</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/@HIER_YOUTUBE_KANAL"
+           rel="me noopener" target="_blank">YouTube</a>
+      </li>
+      <li>
+        <a href="mailto:philipp@seuring.net">E-Mail</a>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <nav>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/embeds.js"></script>
+</body>
+</html>
