@@ -4,157 +4,114 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Philipp Seuring</title>
-<meta name="description" content="Persönliche Seite von Philipp Seuring.">
+<meta name="description" content="Philipp Seuring – Vice President, Head of Applications bei Capgemini Deutschland. Softwareentwicklung, Architektur und Beratung. Hamburg.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://seuring.de/">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<header class="site">
-  <div class="wrap">
-    <div class="identity">
-      <!-- Portraitfoto: als website/assets/portrait.jpg ablegen.
-           Fehlt die Datei, bleibt der Kreis leer – die Seite funktioniert. -->
-      <img class="portrait" src="assets/portrait.jpg" alt="Porträtfoto von Philipp Seuring">
-      <div>
-        <h1>Philipp Seuring</h1>
-        <p class="role">Vice President – Head of Applications, Capgemini Deutschland</p>
-      </div>
-    </div>
-
-    <p class="intro">
-      Ich verantworte bei Capgemini in Deutschland den Bereich Applications – von
-      Softwareentwicklung über IT-Architektur bis zu agentischen KI-Lösungen, gemeinsam mit
-      Teams in Deutschland, Polen und Indien. Zuvor habe ich als Entwickler, Berater,
-      Softwarearchitekt und Projektleiter unter anderem in Automotive, Logistik und dem
-      öffentlichen Sektor gearbeitet. Auf dieser Seite teile ich Gedanken zu Software-Engineering,
-      Enterprise-Architektur und dem Wandel durch KI-Agenten.
-    </p>
-  </div>
-</header>
-
-<main class="wrap">
+<div class="layout">
 
   <!-- ============================================================
-       BEITRÄGE
-
-       Jede Karte braucht drei Dinge:
-       1. data-id      – die YouTube-Video-ID (Teil hinter "v=" in der URL)
-       2. Vorschaubild – LOKAL unter assets/beitraege/ ablegen.
-                         Niemals das Bild von i.ytimg.com verlinken:
-                         das würde beim Seitenaufruf eine Anfrage an
-                         Google auslösen und die Zwei-Klick-Lösung
-                         wirkungslos machen.
-       3. Titel und Beschreibungstext
-
-       Vor dem Klick lädt die Seite nichts von YouTube.
+       LINKE SPALTE – bleibt auf großen Bildschirmen stehen.
+       Sie ist die Visitenkarte; rechts steht der Inhalt.
        ============================================================ -->
-  <section id="beitraege">
-    <h2>Beiträge</h2>
+  <aside class="identity">
 
-    <article class="embed" data-id="oyrlqjodtRw"
-             data-title="Karriere als IT-Berater">
-      <button type="button" class="embed-thumb" data-consent
-              aria-label="Video „Karriere als IT-Berater" laden und abspielen">
-        <img src="assets/beitraege/beitrag-1.jpg" alt="">
-        <span class="play-badge" aria-hidden="true"></span>
-      </button>
-      <div class="embed-body">
-        <p class="embed-meta">YouTube · ComputerwocheTV · März 2013</p>
-        <h3 class="embed-title">Karriere als IT-Berater</h3>
-        <p class="embed-desc">
-          Live-Podiumsdiskussion im Zentrum für Job &amp; Karriere der COMPUTERWOCHE auf der
-          CeBIT 2013 in Hannover: gemeinsam mit Kai Begelinger (DV-Ratio), Dr. Werner Steck
-          (Senacor), Christoph Joos (MHP) und Susanne Melchert (Software AG) über das Leben
-          als IT-Berater – Einstieg, Alltag und was den Job ausmacht.
+    <!-- Porträt: assets/portrait.jpg, Zuschnitt aus 2019_PhilippSeuring_Foto_1.jpg
+         (Auswahl 06.09.2026 – zentriert, direkter Blick, passt auf dunklem
+         Grund am saubersten in den Kreis). Als CSS-Hintergrund eingebunden:
+         Fehlt die Datei einmal, bleibt der Kreis leer statt ein kaputtes
+         Bildsymbol zu zeigen – die Seite bleibt vollständig. -->
+    <div class="portrait" role="img" aria-label="Porträtfoto von Philipp Seuring"></div>
+
+    <h1>Philipp&nbsp;Seuring</h1>
+
+    <p class="role">Vice President · Head of Applications</p>
+    <p class="org">Capgemini Deutschland</p>
+    <p class="place">Hamburg</p>
+
+    <!-- Bewusst normale Links, kein LinkedIn-Badge: Ein Badge lädt ein Skript
+         von LinkedIn nach und hätte dasselbe Einwilligungsproblem wie ein Video.
+         Kein YouTube-Link: ein eigener Kanal existiert nicht (geprüft 06.09.2026). -->
+    <nav class="links" aria-label="Profile">
+      <a href="https://www.linkedin.com/in/philippseuring/" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="https://www.dfv-eurofinance.com/events/philipp-seuring/" rel="me noopener" target="_blank">Vorträge</a>
+      <a href="mailto:philipp@seuring.net">E-Mail</a>
+    </nav>
+
+  </aside>
+
+  <!-- ============================================================
+       RECHTE SPALTE – Inhalt
+       ============================================================ -->
+  <main class="content">
+
+    <section class="about" aria-labelledby="ueber">
+      <h2 id="ueber">Kurzprofil</h2>
+
+      <p class="lead">
+        Ich verantworte bei Capgemini in Deutschland das Applications-Geschäft:
+        Softwareentwicklung, Architektur, Business-Analyse und Projektleitung für
+        maßgeschneiderte Lösungen und Systemintegration – mit Teams in
+        Deutschland, Polen und Indien.
+      </p>
+
+      <p>
+        Davor habe ich als Entwickler, Berater, Softwarearchitekt und
+        Projektleiter gearbeitet, unter anderem in Automotive, Logistik und im
+        öffentlichen Sektor. Studiert habe ich Software-Systemtechnik am
+        Hasso-Plattner-Institut in Potsdam; begonnen hat die Laufbahn 2005 als
+        Softwareentwickler in München. Nach dem Aufbau des Indien-Geschäfts für
+        den deutschsprachigen Raum von Zürich aus lebe ich seit 2013 in Hamburg.
+      </p>
+    </section>
+
+    <!-- ============================================================
+         BEITRÄGE
+
+         Kein Bild, kein iframe, kein Vorschaubild von ytimg.com.
+         Vor dem Klick geht keine einzige Anfrage an Google.
+         Erst der Klick erzeugt den iframe auf youtube-nocookie.com.
+
+         Weiterer Beitrag? <article class="post"> duplizieren und
+         data-id auf die neue Video-ID setzen. Ein Beitrag ohne
+         Video (etwa ein Artikel) bekommt statt der Schaltfläche
+         einfach einen Link – dann kein data-consent setzen.
+         ============================================================ -->
+    <section class="posts" aria-labelledby="beitraege">
+      <h2 id="beitraege">Beiträge</h2>
+
+      <article class="post" data-id="oyrlqjodtRw" data-title="Karriere als IT-Berater">
+        <p class="post-meta">Podiumsdiskussion · ComputerwocheTV · CeBIT 2013</p>
+        <h3 class="post-title">Karriere als IT-Berater</h3>
+        <p class="post-desc">
+          Live-Diskussion im Zentrum für Job &amp; Karriere der COMPUTERWOCHE auf
+          der CeBIT in Hannover – gemeinsam mit Kai Begelinger (DV-Ratio),
+          Dr. Werner Steck (Senacor), Christoph Joos (MHP) und Susanne Melchert
+          (Software AG) über Einstieg, Alltag und Anspruch im Beratungsgeschäft.
         </p>
-        <div class="embed-actions">
-          <button type="button" class="btn" data-consent>Video abspielen</button>
-          <p class="privacy-note">
+        <div class="post-actions">
+          <button type="button" class="play" data-consent>Video abspielen</button>
+          <p class="hint">
             Erst beim Klick werden Daten an YouTube übertragen.
             <a href="datenschutz.html">Datenschutz</a>
           </p>
         </div>
-      </div>
-    </article>
+      </article>
+    </section>
 
-    <!-- Weitere Video-Beiträge folgen – bewusst erstmal nur einer,
-         siehe README.md: einen Block wie oben duplizieren, wenn der
-         nächste Beitrag feststeht.
-    <article class="embed" data-id="HIER_VIDEO_ID_2" ...> -->
-    <!-- <article class="embed" data-id="HIER_VIDEO_ID_3" ...> -->
+    <footer>
+      <nav>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
 
-    <!-- Artikelkarte: kein Einwilligungsklick nötig.
-         Ein Link überträgt beim Seitenaufruf nichts – erst wer
-         klickt, verlässt die Seite. Deshalb hat diese Karte
-         weder data-consent noch einen Datenschutzhinweis.
+  </main>
 
-         ⚠️ Noch nicht veröffentlicht (Stand 20.08.2026).
-         Diese Karte erst online stellen, wenn der Beitrag steht,
-         und dann die URL unten auf den direkten Artikellink
-         ändern – nicht auf die Startseite.                      -->
-    <article class="embed is-article">
-      <a class="embed-thumb" href="https://consultantcareerlounge.com/"
-         rel="noopener" target="_blank" aria-label="Beitrag auf Consultant Career Lounge lesen">
-        <img src="assets/beitraege/beitrag-ccl.jpg" alt="">
-      </a>
-      <div class="embed-body">
-        <p class="embed-meta"><span class="todo">Consultant Career Lounge · geplant</span></p>
-        <h3 class="embed-title"><span class="todo">Titel des Beitrags</span></h3>
-        <p class="embed-desc">
-          <span class="todo">Zwei bis drei Sätze zum Thema des Artikels: Worum geht es,
-          für wen ist er geschrieben, was nimmt man mit.</span>
-        </p>
-        <div class="embed-actions">
-          <a class="btn" href="https://consultantcareerlounge.com/"
-             rel="noopener" target="_blank">Beitrag lesen</a>
-          <p class="privacy-note">
-            Externer Link. Es werden erst Daten übertragen, wenn du ihn öffnest.
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- ============================================================
-       PROFILE
-
-       Bewusst normale Links, kein LinkedIn-Badge: Ein Badge lädt
-       Skripte von LinkedIn nach und hätte dasselbe Einwilligungs-
-       problem wie ein Video. Begründung in README.md.
-       ============================================================ -->
-  <section id="profile">
-    <h2>Profile</h2>
-    <ul class="links">
-      <li>
-        <a href="https://www.linkedin.com/in/philippseuring/"
-           rel="me noopener" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/@HIER_YOUTUBE_KANAL"
-           rel="me noopener" target="_blank"><span class="todo">YouTube</span></a>
-      </li>
-      <li>
-        <a href="https://www.dfv-eurofinance.com/events/philipp-seuring/"
-           rel="noopener" target="_blank">Vorträge &amp; Panels</a>
-      </li>
-      <li>
-        <a href="mailto:philipp@seuring.net">E-Mail</a>
-      </li>
-    </ul>
-  </section>
-
-</main>
-
-<footer class="site">
-  <div class="wrap">
-    <nav>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
-  </div>
-</footer>
+</div>
 
 <script src="assets/embeds.js"></script>
 </body>

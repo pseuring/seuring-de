@@ -1,19 +1,19 @@
 /* ============================================================
    Zwei-Klick-Lösung für externe Einbettungen
-   seuring.de
+   seuring.de – Variante B
 
    Grundgedanke: Solange niemand klickt, geht KEINE Anfrage an
-   YouTube oder Google. Kein iframe im HTML, und – wichtig –
-   auch kein Vorschaubild von ytimg.com. Die Vorschaubilder
-   liegen lokal im Ordner assets/beitraege/.
+   YouTube oder Google. Kein iframe im HTML und – wichtig – auch
+   kein Vorschaubild von ytimg.com. Diese Variante zeigt gar kein
+   Vorschaubild, damit ist die Regel bauartbedingt eingehalten.
 
    Erst der Klick erzeugt den iframe, und zwar auf
    youtube-nocookie.com statt youtube.com.
 
-   Es werden keine Cookies gesetzt und nichts gespeichert.
-   Die Einwilligung gilt nur für diesen einen Klick auf dieser
-   einen Seitenansicht. Das ist Absicht: Ein Einwilligungs-
-   speicher wäre der erste Schritt zurück zum Cookie-Banner.
+   Es werden keine Cookies gesetzt und nichts gespeichert. Die
+   Einwilligung gilt nur für diesen einen Klick auf dieser einen
+   Seitenansicht. Das ist Absicht: Ein Einwilligungsspeicher wäre
+   der erste Schritt zurück zum Cookie-Banner.
    ============================================================ */
 
 (function () {
@@ -21,18 +21,13 @@
 
   function activate(box) {
     var id = box.getAttribute("data-id");
-    var thumb = box.querySelector(".embed-thumb");
-
-    if (!thumb) return;
+    var actions = box.querySelector(".post-actions");
+    if (!actions) return;
 
     if (!id || id.indexOf("HIER_") === 0) {
-      var warn = document.createElement("div");
-      warn.className = "embed-body";
-      warn.innerHTML =
-        "<p class='embed-desc'><strong>Noch nicht konfiguriert.</strong> " +
-        "In dieser Karte fehlt die Video-ID. Siehe README.md im Ordner " +
-        "<code>website/</code>.</p>";
-      thumb.replaceWith(warn);
+      actions.innerHTML =
+        "<p class='hint'><strong>Noch nicht konfiguriert.</strong> " +
+        "In diesem Beitrag fehlt die Video-ID (Attribut <code>data-id</code>).</p>";
       return;
     }
 
@@ -41,7 +36,7 @@
 
     var iframe = document.createElement("iframe");
     // youtube-nocookie.com = erweiterter Datenschutzmodus.
-    // autoplay=1, weil der Nutzer soeben aktiv auf Abspielen geklickt hat.
+    // autoplay=1, weil soeben aktiv auf Abspielen geklickt wurde.
     iframe.src =
       "https://www.youtube-nocookie.com/embed/" +
       encodeURIComponent(id) +
@@ -53,17 +48,14 @@
     iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 
     frame.appendChild(iframe);
-    thumb.replaceWith(frame);
-
-    var actions = box.querySelector(".embed-actions");
-    if (actions) actions.remove();
+    actions.replaceWith(frame);
   }
 
   document.addEventListener("click", function (event) {
     var trigger = event.target.closest("[data-consent]");
     if (!trigger) return;
 
-    var box = trigger.closest(".embed");
+    var box = trigger.closest(".post");
     if (!box) return;
 
     event.preventDefault();

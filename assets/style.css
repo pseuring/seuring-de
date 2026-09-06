@@ -1,247 +1,217 @@
 /* ============================================================
-   seuring.de – Stylesheet
-   Designrichtung B: Tiefblau auf warmem Papierweiß, Kupfer als Akzent.
+   seuring.de – Variante B „Profil"
 
-   Bewusst ohne externe Schriften, ohne Frameworks, ohne CDN.
-   Alles, was der Browser lädt, liegt auf dem eigenen Server –
-   deshalb kommt die Seite ohne Cookie-Banner aus.
+   Zweispaltig: links die stehende Visitenkarte, rechts der Inhalt.
+   Serifenschrift für Name und Überschriften – aus dem Vorrat des
+   Betriebssystems, nicht von einem fremden Server. Sie erzeugt den
+   Abstand zur Konzernanmutung, für den sonst eine Fremdschrift
+   nötig wäre.
+
+   Ohne externe Schriften, ohne Framework, ohne CDN. Alles, was der
+   Browser lädt, liegt auf dem eigenen Server – deshalb kommt die
+   Seite ohne Cookie-Banner aus.
    ============================================================ */
 
 :root {
-  --fg:         #14303d;   /* tiefes, entsättigtes Blau statt Schwarz */
-  --fg-muted:   #776f64;   /* warmes Grau, kein Blaugrau */
-  --bg:         #fbfaf8;   /* Papierweiß, nicht Konzernweiß */
-  --bg-soft:    #f3efe9;
-  --border:     #e4ded5;
-  --border-hi:  #cfc6b9;
-  --accent:     #14303d;
-  --copper:     #a8551f;   /* zweiter Akzent, in Konzernpaletten unüblich */
-  --copper-hi:  #8a4720;
-  --radius:     10px;
-  --maxw:       46rem;
+  --fg:        #14303d;   /* tiefes, entsättigtes Blau statt Schwarz */
+  --fg-muted:  #756d63;   /* warmes Grau, kein Blaugrau */
+  --bg:        #fbfaf8;   /* Papierweiß, nicht Konzernweiß */
+  --bg-soft:   #f2eee8;
+  --border:    #e2dcd3;
+  --copper:    #a8551f;   /* zweiter Akzent, in Konzernpaletten unüblich */
+  --copper-hi: #8a4720;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+           Georgia, "Times New Roman", serif;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+           "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fg:         #ece7df;
-    --fg-muted:   #a09689;
-    --bg:         #14181b;
-    --bg-soft:    #1d2226;
-    --border:     #303740;
-    --border-hi:  #454e58;
-    --accent:     #a8c8d6;
-    --copper:     #d98c56;
-    --copper-hi:  #eaa876;
+    --fg:        #ece7df;
+    --fg-muted:  #a09689;
+    --bg:        #14181b;
+    --bg-soft:   #1d2226;
+    --border:    #2e353d;
+    --copper:    #d98c56;
+    --copper-hi: #eaa876;
   }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-
 html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
-.wrap {
-  max-width: var(--maxw);
+/* ---------- Raster ----------
+   Auf breiten Bildschirmen zwei Spalten; die linke bleibt beim
+   Scrollen stehen. Darunter gestapelt – keine Sonderregeln nötig,
+   weil beide Spalten für sich lesbar sind.                     */
+
+.layout {
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 5rem 2rem 4rem;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 34rem);
+  align-items: start;
 }
 
-/* ---------- Kopfbereich ---------- */
-
-header.site {
-  padding: 5rem 0 3rem;
+@media (max-width: 54rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+    max-width: 36rem;
+  }
 }
 
-.identity {
+@media (min-width: 54.01rem) {
+  .identity { position: sticky; top: 5rem; }
+}
+
+/* ---------- Linke Spalte ---------- */
+
+/* Foto liegt als CSS-Hintergrund, nicht als <img>: Fehlt die Datei
+   einmal, bleibt der Kreis leer statt ein kaputtes Bildsymbol zu
+   zeigen. Semantik über role="img" im HTML.                      */
+.portrait {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background-color: var(--bg-soft);
+  background-image: url("portrait.jpg");
+  background-size: cover;
+  background-position: center 20%;
   display: flex;
   align-items: center;
-  gap: 1.75rem;
-  flex-wrap: wrap;
-}
-
-.portrait {
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: var(--bg-soft);
-  flex: none;
+  justify-content: center;
+  margin: 0 0 1.6rem;
 }
 
 .identity h1 {
-  margin: 0 0 .35rem;
-  font-size: 2.15rem;
-  font-weight: 600;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.85rem;
   line-height: 1.15;
-  letter-spacing: -.022em;
+  letter-spacing: -.01em;
+  margin: 0 0 .8rem;
 }
 
 .identity .role {
   margin: 0;
+  font-size: .95rem;
+  line-height: 1.45;
+}
+
+.identity .org,
+.identity .place {
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.45;
   color: var(--fg-muted);
-  font-size: 1rem;
-  letter-spacing: .005em;
 }
 
-.intro {
-  margin: 2.25rem 0 0;
-  font-size: 1.14rem;
-  line-height: 1.6;
-  max-width: 36rem;
+.identity .place { margin-top: .55rem; }
+
+/* ---------- Profil-Links ----------
+   Bewusst normale Links, kein LinkedIn-Badge: Ein Badge lädt ein
+   Skript von LinkedIn nach und hätte dasselbe Einwilligungsproblem
+   wie ein Video – für den Gegenwert von Name und Position, also
+   dem, was ohnehin auf der Seite steht.                        */
+
+.links {
+  margin: 1.6rem 0 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: .92rem;
 }
 
-/* ---------- Abschnitte ---------- */
+.links a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: border-color .15s ease, color .15s ease;
+}
 
-section { padding: 3.5rem 0 0; }
+.links a:hover { color: var(--copper); border-color: var(--copper); }
+.links a:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+/* ---------- Rechte Spalte ---------- */
+
+.content > section + section { margin-top: 3.5rem; }
 
 h2 {
-  font-size: .82rem;
+  font-size: .74rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .1em;
+  letter-spacing: .12em;
   color: var(--fg-muted);
-  margin: 0 0 1.5rem;
-  padding-bottom: .75rem;
+  margin: 0 0 1.4rem;
+  padding-bottom: .7rem;
   border-bottom: 1px solid var(--border);
+}
+
+.about p { margin: 0 0 1.1rem; }
+.about p:last-child { margin-bottom: 0; }
+
+.lead {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  line-height: 1.55;
 }
 
 a { color: var(--copper); text-underline-offset: 2px; }
 a:hover { color: var(--copper-hi); }
 
-/* ---------- Beitragskarten ---------- */
+/* ---------- Beiträge ---------- */
 
-.embed {
-  margin: 0 0 2rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--bg);
-  transition: border-color .15s ease;
+.post {
+  padding: 0 0 .5rem;
+  border-left: 2px solid var(--border);
+  padding-left: 1.4rem;
 }
 
-.embed:hover { border-color: var(--border-hi); }
+.post + .post { margin-top: 2.5rem; }
 
-/* Vorschaubild. Liegt lokal – nicht bei YouTube.
-   Würde man das YouTube-Thumbnail verlinken, wäre die
-   Zwei-Klick-Lösung wirkungslos.                        */
-.embed-thumb {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--bg-soft);
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.embed-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .4s ease;
-}
-
-.embed-thumb:hover img { transform: scale(1.02); }
-
-.embed-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 48, 61, .18);
-  opacity: 0;
-  transition: opacity .2s ease;
-}
-
-.embed-thumb:hover::after { opacity: 1; }
-
-.play-badge {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: rgba(251, 250, 248, .93);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.play-badge::after {
-  content: "";
-  border-style: solid;
-  border-width: 11px 0 11px 18px;
-  border-color: transparent transparent transparent var(--copper);
-  margin-left: 4px;
-}
-
-.embed-thumb:focus-visible { outline: 3px solid var(--copper); outline-offset: -3px; }
-
-/* Artikelkarte: kein Abspiel-Symbol, dafür ein dezenter Pfeil.
-   Signalisiert „führt weg von hier" statt „spielt hier ab".   */
-.is-article .embed-thumb { cursor: pointer; }
-
-.is-article .embed-thumb::before {
-  content: "↗";
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  z-index: 1;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(251, 250, 248, .93);
-  color: var(--copper);
-  font-size: 1rem;
-  line-height: 34px;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .is-article .embed-thumb::before { background: rgba(20, 24, 27, .9); }
-}
-
-.embed-body { padding: 1.25rem 1.4rem 1.4rem; }
-
-.embed-meta {
+.post-meta {
+  margin: 0 0 .35rem;
   font-size: .78rem;
   text-transform: uppercase;
   letter-spacing: .07em;
   color: var(--fg-muted);
-  margin: 0 0 .4rem;
 }
 
-.embed-title {
-  margin: 0 0 .55rem;
-  font-size: 1.18rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -.012em;
+.post-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin: 0 0 .6rem;
 }
 
-.embed-desc {
+.post-desc {
   margin: 0;
-  font-size: .97rem;
+  font-size: .95rem;
   line-height: 1.6;
   color: var(--fg-muted);
 }
 
-.embed-actions {
+.post-actions {
   margin: 1.1rem 0 0;
   display: flex;
   align-items: center;
@@ -249,32 +219,38 @@ a:hover { color: var(--copper-hi); }
   flex-wrap: wrap;
 }
 
-.privacy-note {
-  font-size: .8rem;
-  line-height: 1.45;
-  color: var(--fg-muted);
-  margin: 0;
-  flex: 1 1 15rem;
-}
-
-/* ---------- Schaltflächen ---------- */
-
-.btn {
-  display: inline-block;
-  padding: .55rem 1.2rem;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--bg);
+.play {
   font: inherit;
-  font-size: .92rem;
-  font-weight: 500;
+  font-size: .88rem;
+  padding: .42rem 1.05rem .42rem 1rem;
+  border: 1px solid var(--fg);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
   white-space: nowrap;
 }
 
-.btn:hover { background: transparent; color: var(--accent); }
-.btn:focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
+.play::before {
+  content: "";
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+.play:hover { background: var(--fg); color: var(--bg); }
+.play:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+
+.hint {
+  margin: 0;
+  font-size: .78rem;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  flex: 1 1 13rem;
+}
 
 /* Rahmen für das eingesetzte Video */
 .embed-frame {
@@ -282,6 +258,9 @@ a:hover { color: var(--copper-hi); }
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.1rem 0 0;
 }
 
 .embed-frame iframe {
@@ -292,63 +271,77 @@ a:hover { color: var(--copper-hi); }
   border: 0;
 }
 
-/* ---------- Profil-Links ---------- */
+/* ---------- Fuß ---------- */
 
-.links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
-}
-
-.links a {
-  display: inline-block;
-  padding: .5rem 1.15rem;
-  border: 1px solid var(--border-hi);
-  border-radius: 999px;
-  color: var(--fg);
-  text-decoration: none;
-  font-size: .93rem;
-}
-
-.links a:hover { border-color: var(--copper); color: var(--copper); }
-
-/* ---------- Fußbereich ---------- */
-
-footer.site {
-  margin-top: 4.5rem;
-  padding: 1.75rem 0 3.5rem;
+.content footer {
+  margin-top: 4rem;
+  padding-top: 1.4rem;
   border-top: 1px solid var(--border);
-  color: var(--fg-muted);
-  font-size: .88rem;
 }
 
-footer.site nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-footer.site a { color: var(--fg-muted); }
-footer.site a:hover { color: var(--copper); }
+.content footer nav { display: flex; gap: 1.5rem; font-size: .85rem; }
+.content footer a { color: var(--fg-muted); text-decoration: none; }
+.content footer a:hover { color: var(--copper); }
 
 /* ---------- Rechtstexte ---------- */
 
-.legal { padding-top: 4rem; }
-.legal h1 { font-size: 1.9rem; font-weight: 600; margin: 0 0 1.5rem; letter-spacing: -.02em; }
-.legal h2 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-transform: none;
-  letter-spacing: -.005em;
-  color: var(--fg);
-  margin-top: 2.4rem;
-  padding-bottom: 0;
-  border-bottom: 0;
+.legal {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 4rem;
 }
+
+.legal h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  margin: 0 0 1.75rem;
+}
+
+.legal h2 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg);
+  margin: 2.5rem 0 .7rem;
+  padding: 0;
+  border: 0;
+}
+
+.legal p, .legal ul { font-size: .95rem; }
 
 .legal address {
   font-style: normal;
-  padding: 1.1rem 1.35rem;
+  padding: 1rem 1.25rem;
   background: var(--bg-soft);
-  border-radius: var(--radius);
+  border-radius: 8px;
+  font-size: .95rem;
+}
+
+.legal code {
+  font-size: .88em;
+  background: var(--bg-soft);
+  padding: .1em .35em;
+  border-radius: 4px;
+}
+
+.legal footer {
+  margin-top: 3.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1.5rem;
+  font-size: .85rem;
+}
+
+.legal footer a { color: var(--fg-muted); text-decoration: none; }
+.legal footer a:hover { color: var(--copper); }
+
+@media (max-width: 54rem) {
+  .legal { padding: 3rem 1.5rem; }
 }
 
 /* Offene Stellen – absichtlich auffällig, sollen nicht übersehen werden. */
@@ -362,13 +355,11 @@ footer.site a:hover { color: var(--copper); }
 
 @media (prefers-color-scheme: dark) {
   .todo { background: #6b5500; color: #ffeeb5; }
-  .play-badge { background: rgba(20, 24, 27, .9); }
 }
 
-@media (max-width: 34rem) {
+@media (max-width: 30rem) {
   body { font-size: 16px; }
-  header.site { padding: 3rem 0 2rem; }
   .identity h1 { font-size: 1.7rem; }
-  .intro { font-size: 1.05rem; }
-  .portrait { width: 88px; height: 88px; }
+  .lead { font-size: 1.13rem; }
+  .post { padding-left: 1.1rem; }
 }
