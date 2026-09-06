@@ -26,9 +26,16 @@
          Bildsymbol zu zeigen – die Seite bleibt vollständig. -->
     <div class="portrait" role="img" aria-label="Porträtfoto von Philipp Seuring"></div>
 
+    <!-- Kennzeichnung als berufliche Seite. Steht bewusst über dem Namen:
+         Wer die Seite über eine Suche findet, soll vor dem Lesen wissen,
+         worum es hier geht – Privates liegt auf seuring.net (siehe Fuß). -->
+    <p class="kicker">Berufliche Seite</p>
+
     <h1>Philipp&nbsp;Seuring</h1>
 
-    <p class="role">Vice President · Head of Applications</p>
+    <!-- Umbruch bewusst gesetzt: In der 15rem breiten Spalte bräche
+         „Head of Applications" sonst mitten im Titel um. -->
+    <p class="role">Vice President<br>Head of Applications</p>
     <p class="org">Capgemini Deutschland</p>
     <p class="place">Hamburg</p>
 
@@ -83,6 +90,31 @@
     <section class="posts" aria-labelledby="beitraege">
       <h2 id="beitraege">Beiträge</h2>
 
+      <!-- Kein data-id / data-consent: Dieser Beitrag ist kein Video, sondern
+           zwei normale Hyperlinks. Ein Link überträgt beim Seitenaufruf nichts,
+           erst wer klickt, verlässt die Seite. embeds.js reagiert nur auf
+           [data-consent] und lässt diese Karte darum unangetastet. -->
+      <article class="post">
+        <p class="post-meta">Deep Dive · EURO FINANCE Tech Day · Frankfurt, November 2023</p>
+        <h3 class="post-title">Generative AI for Software Engineering: Revolution or Evolution?</h3>
+        <p class="post-desc">
+          Deep Dive auf dem EURO FINANCE Tech Day am 15. November 2023 im
+          Steigenberger Icon Frankfurter Hof, gemeinsam mit Matthias Sondermann
+          (CTO Cloud &amp; Custom Applications Germany, Capgemini). Die Konferenz
+          stand unter dem Motto „Can we handle artificial finance?" und fragte,
+          was der Einsatz von KI für Finanz- und Bankwesen bedeutet – unser
+          Beitrag drehte sich um generative KI in der Softwareentwicklung.
+          <strong>Der Vortrag wurde nicht aufgezeichnet</strong>; die Links führen
+          zur Ankündigung der Konferenz und zum Sprecherprofil.
+        </p>
+        <p class="post-links">
+          <a href="https://www.dfv-eurofinance.com/events/euro-finance-tech-day-2023/"
+             rel="noopener" target="_blank">Ankündigung der Konferenz</a>
+          <a href="https://www.dfv-eurofinance.com/events/philipp-seuring/"
+             rel="me noopener" target="_blank">Sprecherprofil</a>
+        </p>
+      </article>
+
       <article class="post" data-id="oyrlqjodtRw" data-title="Karriere als IT-Berater">
         <p class="post-meta">Podiumsdiskussion · ComputerwocheTV · CeBIT 2013</p>
         <h3 class="post-title">Karriere als IT-Berater</h3>
@@ -103,6 +135,13 @@
     </section>
 
     <footer>
+      <!-- seuring.net ist bewusst NICHT verlinkt: Die Domain liegt bis zum
+           Transfer (Mitte Oktober 2026) noch bei DomainFactory und liefert
+           nichts aus. Nach dem Transfer hier einen echten Link setzen. -->
+      <p class="family">
+        Diese Seite ist beruflich. Informationen zur Familie Seuring
+        finden sich unter seuring.net.
+      </p>
       <nav>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
