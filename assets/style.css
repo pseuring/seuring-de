@@ -93,8 +93,8 @@ body {
    einmal, bleibt der Kreis leer statt ein kaputtes Bildsymbol zu
    zeigen. Semantik über role="img" im HTML.                      */
 .portrait {
-  width: 108px;
-  height: 108px;
+  width: 136px;
+  height: 136px;
   border-radius: 50%;
   background-color: var(--bg-soft);
   background-image: url("portrait.jpg");
