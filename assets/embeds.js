@@ -62,3 +62,26 @@
     activate(box);
   });
 })();
+
+/* ============================================================
+   Kurzbiografie kopieren (27.09.2026)
+   Rein lokal: schreibt nur in die Zwischenablage des Besuchers,
+   überträgt nichts. Ohne Skript bleibt der Knopf verborgen und
+   der Text lässt sich markieren.
+   ============================================================ */
+(function () {
+  "use strict";
+  var btn = document.querySelector("[data-copy]");
+  if (!btn || !navigator.clipboard) return;
+  btn.hidden = false;
+  btn.addEventListener("click", function () {
+    var src = document.getElementById(btn.getAttribute("data-copy"));
+    if (!src) return;
+    var text = src.innerText.replace(/\s+/g, " ").trim();
+    navigator.clipboard.writeText(text).then(function () {
+      var old = btn.textContent;
+      btn.textContent = "Kopiert";
+      setTimeout(function () { btn.textContent = old; }, 2000);
+    });
+  });
+})();
